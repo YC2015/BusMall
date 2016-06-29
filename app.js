@@ -22,8 +22,8 @@ var breakfastObject = new PictureObject ('breakfast', 'img/breakfast.jpg');
 
 
 //Random Number for Images
-function randomNumber (min, max) {
-  return Math.floor(Math.random() * (max - min + 1 ) ) + min;
+function randomNumber () {
+  return Math.floor(Math.random() * itemsArray.length)
 }
 
 
