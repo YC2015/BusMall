@@ -2,6 +2,22 @@ html {
   width: 100%;
 }
 
-div {
+section {
+  width: 100%;
+}
+
+#photos{
+  display: inline;
+}
+
+#left{
   width: 350px;
+}
+
+#middle{
+  width: 350px;
+}
+
+#right {
+  width:350px;
 }
