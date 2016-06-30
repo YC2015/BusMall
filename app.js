@@ -5,7 +5,7 @@ function PictureObject (name, filepath) {
   this.name = name;
   this.filePath = filepath;
   this.totalNumberOfTimesDisplayed = 0;
-  this.totalNumberOfTimesClicked = 0;
+  this.totalNumberofTimesClicked = 0;
   pictureObjectsArray.push(this);
 };
 
@@ -31,7 +31,7 @@ var tauntuan = new PictureObject ('tauntaun', 'img/tauntaun.jpg');
 var unicorn = new PictureObject ('unicorn', 'img/unicorn.jpg');
 var usb = new PictureObject ('usb', 'img/usb.jpg');
 var watercan = new PictureObject ('water-can', 'img/water-can.jpg');
-var waerglass = new PictureObject ('wine-glass','img/wine-glass');
+var wineglass = new PictureObject ('wine-glass','img/wine-glass.jpg');
 
 
 
@@ -65,21 +65,56 @@ function displayPictures() {
   var objectValues = randomObjects();
   var imagedisplay1 = document.getElementById('left');
   imagedisplay1.src = objectValues[0].filePath;
+  imagedisplay1.addEventListener('click', handleButtonClick);
   var imagedisplay2 = document.getElementById('middle');
   imagedisplay2.src = objectValues[1].filePath;
+  imagedisplay2.addEventListener('click', handleButtonClick);
   var imagedisplay3 = document.getElementById('right');
   imagedisplay3.src = objectValues[2].filePath;
-
-
-
-image1.addEventListener('click', handleButtonClick);
+  imagedisplay3.addEventListener('click', 'handleButtonClick');
 }
-
 displayPictures();
 
 
-//Clicks
+//Clicks - not completed (not sure how to target and track the clicks on images; assuming it is through event objects? Should I be making this into a form to get the page to refresh?)
 function handleButtonClick (event) {
   event.target;
+  console.log(event);
   console.log('worked');
 }
+
+handleButtonClick();
+
+//Create ChartJS
+
+/*chart = function(){
+var ctx =  doucment.getElementByID('canvas').getContext ('2d');
+
+var chart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels:[incorporate pictureObjectsArray.name for photos?]
+    datasets: [{
+      label: '# of Votes',
+      data:[?],
+      backgroundColor:[
+      'rgba(255, 99, 132, 0.2)' X20
+    ],
+    borderColor: [
+      'rgba(255, 99, 132, 0.2)' X20
+    ],
+    borderWidth:1
+  }]
+},
+options:{
+  scales:{
+    yAxes:[{
+      ticks: {
+        beginAtZero:true
+        }
+      }]
+    }
+  }
+});
+
+}*/
