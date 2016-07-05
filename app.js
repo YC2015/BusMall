@@ -4,8 +4,8 @@ var pictureObjectsArray = [];
 function PictureObject (name, filepath) {
   this.name = name;
   this.filePath = filepath;
-  this.totalNumberOfTimesDisplayed = 0;
-  this.totalNumberofTimesClicked = 0;
+  this.timesDisplayed = 0;
+  this.votes = 0;
   pictureObjectsArray.push(this);
 };
 
@@ -63,24 +63,52 @@ function randomObjects() {
 
 function displayPictures() {
   var objectValues = randomObjects();
+
   var imagedisplay1 = document.getElementById('left');
-  imagedisplay1.src = objectValues[0].filePath;
+  var image1 = objectValues[0];
+  imagedisplay1.src = image1.filePath;
   imagedisplay1.addEventListener('click', handleButtonClick);
+
   var imagedisplay2 = document.getElementById('middle');
-  imagedisplay2.src = objectValues[1].filePath;
+  var image2 = objectValues[1];
+  imagedisplay2.src = image2.filePath;
   imagedisplay2.addEventListener('click', handleButtonClick);
+
+
   var imagedisplay3 = document.getElementById('right');
-  imagedisplay3.src = objectValues[2].filePath;
+  var image3 = objectValues[2];
+  imagedisplay3.src = image3.filePath;
   imagedisplay3.addEventListener('click', 'handleButtonClick');
+
+  image1.id = image1.name;
+  image2.id = image2.name;
+  image3.id = image3.name;
+
+  image1.timesDisplayed += 1;
+  image2.timesDisplayed += 1;
+  image3.timesDisplayed += 1;
+
 }
+
 displayPictures();
+
+
+
+
+/*function tallyvote(id) {
+  for (var pic of pictureObjectsArray) {
+    if (pic.name === id) {
+      pic.votes += 1;
+    }
+}
+}*/
 
 
 //Clicks - not completed (not sure how to target and track the clicks on images; assuming it is through event objects? Should I be making this into a form to get the page to refresh?)
 function handleButtonClick (event) {
-  event.target;
   console.log(event);
-  console.log('worked');
+  //console.log(event.target);
+  displayPictures();
 }
 
 handleButtonClick();
@@ -92,29 +120,19 @@ var ctx =  doucment.getElementByID('canvas').getContext ('2d');
 
 var chart = new Chart(ctx, {
   type: 'bar',
-  data: {
-    labels:[incorporate pictureObjectsArray.name for photos?]
-    datasets: [{
-      label: '# of Votes',
-      data:[?],
-      backgroundColor:[
-      'rgba(255, 99, 132, 0.2)' X20
-    ],
-    borderColor: [
-      'rgba(255, 99, 132, 0.2)' X20
-    ],
-    borderWidth:1
-  }]
-},
-options:{
-  scales:{
-    yAxes:[{
-      ticks: {
-        beginAtZero:true
-        }
-      }]
-    }
-  }
+  data: data,
+  options: options
 });
 
-}*/
+var data = {
+  labels: ['names array as a string']
+  datasets:[
+    {
+      label: "Number of votes",
+      backgroundColor: "rgba(255,99,132,0.2)",
+      borderWidth: 1,
+      borderColor: "rgba(255,99,132,1)",
+      data: [  number of votes, an array   ]
+    }
+  ]
+};*/
