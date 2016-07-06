@@ -89,8 +89,8 @@ function displayPictures() {
   image3.timesDisplayed += 1;
 
 }
-
-var nonPicture = document.getElementById('photos');
+///this code is not working, need to fix
+/*var nonPicture = document.getElementById('photos');
 var button = document.getElementById('button');
 
 displayPictures();
@@ -101,7 +101,7 @@ function pictureVotes(id){
       pictureObjectsArray[i].votes += 1;
     }
   }
-}
+}*/
 
 pictureVotes();
 
@@ -140,3 +140,18 @@ var data = {
     }
   ]
 };*/
+
+
+//Local Storage Section
+
+//1. Check to see if there is already something in local storage
+//use localstorage.getItem(object);
+//JSON.parse();
+//run through constructor again to turn to turn to object again
+
+
+//2. For when a vote is cast
+// Stringify my votes and times diplayed per pictureObjectsArray
+// JSON.Stringify(objects array);
+// localStorage.setItem(vote, object.votes);
+// localStorage.setItem(display, object.timesDisplayed);
