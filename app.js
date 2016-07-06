@@ -78,7 +78,7 @@ function displayPictures() {
   var imagedisplay3 = document.getElementById('right');
   var image3 = objectValues[2];
   imagedisplay3.src = image3.filePath;
-  imagedisplay3.addEventListener('click', 'handleButtonClick');
+  imagedisplay3.addEventListener('click', handleButtonClick);
 
   image1.id = image1.name;
   image2.id = image2.name;
@@ -90,25 +90,29 @@ function displayPictures() {
 
 }
 
+var nonPicture = document.getElementById('photos');
+var button = document.getElementById('button');
+
 displayPictures();
 
-
-
-
-/*function tallyvote(id) {
-  for (var pic of pictureObjectsArray) {
-    if (pic.name === id) {
-      pic.votes += 1;
+function pictureVotes(id){
+  for (i = 0; i < pictureObjectsArray.length; i++) {
+    if (pictureObjectsArray[i].name === id){
+      pictureObjectsArray[i].votes += 1;
     }
+  }
 }
-}*/
+
+pictureVotes();
 
 
 //Clicks - not completed (not sure how to target and track the clicks on images; assuming it is through event objects? Should I be making this into a form to get the page to refresh?)
 function handleButtonClick (event) {
-  console.log(event);
-  //console.log(event.target);
-  displayPictures();
+  //console.log(event);
+  if(event.target.id !== 'photos'){
+    pictureVotes(event.target.id);
+    displayPictures();
+  }
 }
 
 handleButtonClick();
