@@ -66,22 +66,23 @@ function displayPictures() {
 
   var imagedisplay1 = document.getElementById('left');
   var image1 = objectValues[0];
-  imagedisplay1.id = image1.name;
   imagedisplay1.src = image1.filePath;
   imagedisplay1.addEventListener('click', handleButtonClick);
 
   var imagedisplay2 = document.getElementById('middle');
   var image2 = objectValues[1];
-  imagedisplay2.id = image2.name;
   imagedisplay2.src = image2.filePath;
   imagedisplay2.addEventListener('click', handleButtonClick);
 
 
   var imagedisplay3 = document.getElementById('right');
   var image3 = objectValues[2];
-  imagedisplay3.id = image3.name;
   imagedisplay3.src = image3.filePath;
   imagedisplay3.addEventListener('click', handleButtonClick);
+
+  //imagedisplay1.id = image1.name;
+  //imagedisplay2.id = image2.name;
+  //imagedisplay3.id = image3.name;
 
   image1.timesDisplayed += 1;
   image2.timesDisplayed += 1;
@@ -94,12 +95,12 @@ var button = document.getElementById('button');
 
 displayPictures();
 
-
-
-
-function pictureVotes(id){
+function pictureVotes(src){
+  var completename = src;
+  var slicedname = completename.slice(43);
+  console.log(slicedname);
   for (o = 0; o < pictureObjectsArray.length; o++) {
-    if (pictureObjectsArray[o].name === id){
+    if (pictureObjectsArray[o].filePath === slicedname ){
       pictureObjectsArray[o].votes += 1;
     }
   }
@@ -111,9 +112,10 @@ function handleButtonClick (event) {
   console.log(event);
   console.log(event.target);
   console.log(event.target.id);
+  console.log(event.target.src);
 
   if(event.target.id !== 'photos'){
-    pictureVotes(event.target.id);
+    pictureVotes(event.target.src);
     displayPictures();
   }
 }
