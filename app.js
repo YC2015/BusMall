@@ -1,4 +1,5 @@
 var pictureObjectsArray = [];
+var totalVotes = 0;
 
 //Constructor for the image objects
 function PictureObject (name, filepath) {
@@ -102,6 +103,7 @@ function pictureVotes(src){
   for (o = 0; o < pictureObjectsArray.length; o++) {
     if (pictureObjectsArray[o].filePath === slicedname ){
       pictureObjectsArray[o].votes += 1;
+      totalVotes += 1;
     }
   }
 }
