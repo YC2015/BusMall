@@ -1,4 +1,5 @@
 var pictureObjectsArray = [];
+var totalVotes = 0;
 
 //Constructor for the image objects
 function PictureObject (name, filepath) {
@@ -102,6 +103,7 @@ function pictureVotes(src){
   for (o = 0; o < pictureObjectsArray.length; o++) {
     if (pictureObjectsArray[o].filePath === slicedname ){
       pictureObjectsArray[o].votes += 1;
+      totalVotes += 1;
     }
   }
 }*/
@@ -114,11 +116,37 @@ function handleButtonClick (event) {
   console.log(event.target.id);
   console.log(event.target.src);
 
-  if(event.target.id !== 'photos'){
-    pictureVotes(event.target.src);
-    displayPictures();
+  if (totalVotes < 15) {
+    if(event.target.id !== 'photos'){
+      pictureVotes(event.target.src);
+      displayPictures();
+    }
+  }
+  else {
+    alert ('You have reached 15 votes. View Results');
+    document.getElementById('button').style.visibility = 'visible';
   }
 }
+
+//Show Results
+
+function handleResultsClick(){
+  var createlist = document.getElementById ('list');
+
+  for ( var h = 0; h < pictureObjectsArray.length; h++){
+    var createrow = document.createElement('li');
+    createrow.textContent = pictureObjectsArray[h].name + ', votes: ' + pictureObjectsArray[h].votes;
+    createlist.appendChild(createrow);
+  }
+
+  var votesDisplay = document.createElement('p');
+  votesDisplay.textContent = 'Total Votes: 15';
+  createlist.appendChild(votesDisplay);
+
+}
+
+var resultsClick = document.getElementById('button');
+resultsClick.addEventListener('click', handleResultsClick);
 
 
 //Create ChartJS
