@@ -66,23 +66,22 @@ function displayPictures() {
 
   var imagedisplay1 = document.getElementById('left');
   var image1 = objectValues[0];
+  imagedisplay1.id = image1.name;
   imagedisplay1.src = image1.filePath;
   imagedisplay1.addEventListener('click', handleButtonClick);
 
   var imagedisplay2 = document.getElementById('middle');
   var image2 = objectValues[1];
+  imagedisplay2.id = image2.name;
   imagedisplay2.src = image2.filePath;
   imagedisplay2.addEventListener('click', handleButtonClick);
 
 
   var imagedisplay3 = document.getElementById('right');
   var image3 = objectValues[2];
+  imagedisplay3.id = image3.name;
   imagedisplay3.src = image3.filePath;
   imagedisplay3.addEventListener('click', handleButtonClick);
-
-  image1.id = image1.name;
-  image2.id = image2.name;
-  image3.id = image3.name;
 
   image1.timesDisplayed += 1;
   image2.timesDisplayed += 1;
@@ -95,27 +94,30 @@ var button = document.getElementById('button');
 
 displayPictures();
 
+
+
+
 function pictureVotes(id){
-  for (i = 0; i < pictureObjectsArray.length; i++) {
-    if (pictureObjectsArray[i].name === id){
-      pictureObjectsArray[i].votes += 1;
+  for (o = 0; o < pictureObjectsArray.length; o++) {
+    if (pictureObjectsArray[o].name === id){
+      pictureObjectsArray[o].votes += 1;
     }
   }
 }*/
 
-pictureVotes();
-
 
 //Clicks - not completed (not sure how to target and track the clicks on images; assuming it is through event objects? Should I be making this into a form to get the page to refresh?)
 function handleButtonClick (event) {
-  //console.log(event);
+  console.log(event);
+  console.log(event.target);
+  console.log(event.target.id);
+
   if(event.target.id !== 'photos'){
     pictureVotes(event.target.id);
     displayPictures();
   }
 }
 
-handleButtonClick();
 
 //Create ChartJS
 
