@@ -81,18 +81,11 @@ function displayPictures() {
   imagedisplay3.src = image3.filePath;
   imagedisplay3.addEventListener('click', handleButtonClick);
 
-  //imagedisplay1.id = image1.name;
-  //imagedisplay2.id = image2.name;
-  //imagedisplay3.id = image3.name;
-
   image1.timesDisplayed += 1;
   image2.timesDisplayed += 1;
   image3.timesDisplayed += 1;
 
 }
-///this code is not working, need to fix
-/*var nonPicture = document.getElementById('photos');
-var button = document.getElementById('button');
 
 displayPictures();
 
@@ -106,10 +99,7 @@ function pictureVotes(src){
       totalVotes += 1;
     }
   }
-}*/
 
-
-//Clicks - not completed (not sure how to target and track the clicks on images; assuming it is through event objects? Should I be making this into a form to get the page to refresh?)
 function handleButtonClick (event) {
   console.log(event);
   console.log(event.target);
@@ -129,7 +119,6 @@ function handleButtonClick (event) {
 }
 
 //Show Results
-
 function handleResultsClick(){
   var createlist = document.getElementById ('list');
 
