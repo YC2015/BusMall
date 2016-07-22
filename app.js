@@ -84,11 +84,11 @@ function displayPictures() {
   image1.timesDisplayed += 1;
   image2.timesDisplayed += 1;
   image3.timesDisplayed += 1;
-
 }
 
 displayPictures();
 
+// tallying votes
 function pictureVotes(src){
   var completename = src;
   var slicedname = completename.slice(43);
@@ -99,7 +99,10 @@ function pictureVotes(src){
       totalVotes += 1;
     }
   }
+}
 
+
+//click on images
 function handleButtonClick (event) {
   console.log(event);
   console.log(event.target);
@@ -118,7 +121,7 @@ function handleButtonClick (event) {
   }
 }
 
-//Show Results
+//show voting results
 function handleResultsClick(){
   var createlist = document.getElementById ('list');
 
@@ -136,7 +139,6 @@ function handleResultsClick(){
 
 var resultsClick = document.getElementById('button');
 resultsClick.addEventListener('click', handleResultsClick);
-
 
 //Create ChartJS
 
