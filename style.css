@@ -12,14 +12,17 @@ section {
 
 #left{
   width: 350px;
+  height: 350px;
 }
 
 #middle{
   width: 350px;
+  height: 350px;
 }
 
 #right {
   width:350px;
+  height: 350px;
 }
 
 #button {
