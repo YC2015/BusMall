@@ -137,6 +137,7 @@ function handleResultsClick(){
 
 }
 
+// event listener for view results button
 var resultsClick = document.getElementById('button');
 resultsClick.addEventListener('click', handleResultsClick);
 
