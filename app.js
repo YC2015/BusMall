@@ -125,45 +125,63 @@ function handleButtonClick (event) {
 function handleResultsClick(){
   var createlist = document.getElementById ('list');
 
-  for ( var h = 0; h < pictureObjectsArray.length; h++){
+  /*for ( var h = 0; h < pictureObjectsArray.length; h++){
     var createrow = document.createElement('li');
     createrow.textContent = pictureObjectsArray[h].name + ', votes: ' + pictureObjectsArray[h].votes;
     createlist.appendChild(createrow);
-  }
+  }*/
 
   var votesDisplay = document.createElement('p');
   votesDisplay.textContent = 'Total Votes: 15';
   createlist.appendChild(votesDisplay);
-
 }
 
 // event listener for view results button
 var resultsClick = document.getElementById('button');
 resultsClick.addEventListener('click', handleResultsClick);
 
+
 //Create ChartJS
 
-/*chart = function(){
-var ctx =  doucment.getElementByID('canvas').getContext ('2d');
+var tracker = {
+  chartLabels: [],
+  chartVotes:[],
 
-var chart = new Chart(ctx, {
-  type: 'bar',
-  data: data,
-  options: options
-});
-
-var data = {
-  labels: ['names array as a string']
-  datasets:[
-    {
-      label: "Number of votes",
-      backgroundColor: "rgba(255,99,132,0.2)",
-      borderWidth: 1,
-      borderColor: "rgba(255,99,132,1)",
-      data: [  number of votes, an array   ]
+  updateChartData: function() {
+    for (var p = 0; p < pictureObjectsArray.length; p++) {
+      this.chartLabels[p] = pictureObjectsArray[p].name;
+      this.chartVotes[p] = pictureObjectsArray[p].votes;
     }
-  ]
-};*/
+  },
+
+  makeChart: function() {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    tracker.updateChartData();
+
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: tracker.chartLabels,
+        datasets: [
+          {
+            label: 'Number of Votes',
+            backgroundColor: 'rgba(63,191,191,0.5)',
+            borderColor: 'rgba(12,38,38,1)',
+            borderWidth: 1,
+            hoverBackgroundColor: 'rgba(63,191,191,1)',
+            hoverBorderColor: 'rgba(12,38,38,1)',
+            data: tracker.chartVotes
+          }
+        ]
+      }
+    });
+  }
+};
+
+var resultsClick = document.getElementById('button');
+resultsClick.addEventListener('click', tracker.makeChart);
 
 
 //Local Storage Section
