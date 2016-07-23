@@ -13,27 +13,30 @@ function PictureObject (name, filepath) {
 //Methods
 
 //Creating the image objects
-var bagObject = new PictureObject ('bagpicture', 'img/bag.jpg');
-var bananaObject = new PictureObject ('bananapicture', 'img/banana.jpg');
-var bathroomObject = new PictureObject ('bathroom','img/bathroom.jpg');
-var bootsObject = new PictureObject ('boots','img/boots.jpg');
-var breakfastObject = new PictureObject ('breakfast', 'img/breakfast.jpg');
-var bubblegumObject = new PictureObject ('bubblegum', 'img/bubblegum.jpg');
-var chairObject = new PictureObject ('chair', 'img/chair.jpg');
-var cthulhuObject = new PictureObject ('cthulhu', 'img/cthulhu.jpg');
-var dogduck = new PictureObject ('dog-duck', 'img/dog-duck.jpg');
-var dragon = new PictureObject ('dragon', 'img/dragon.jpg');
-var pen = new PictureObject ('pen','img/pen.jpg');
-var petsweep = new PictureObject ('pet-sweep', 'img/pet-sweep.jpg');
-var scissors = new PictureObject ('scissors', 'img/scissors.jpg');
-var shark = new PictureObject ('shark', 'img/shark.jpg');
-var sweep = new PictureObject ('sweep', 'img/sweep.png');
-var tauntuan = new PictureObject ('tauntaun', 'img/tauntaun.jpg');
-var unicorn = new PictureObject ('unicorn', 'img/unicorn.jpg');
-var usb = new PictureObject ('usb', 'img/usb.jpg');
-var watercan = new PictureObject ('water-can', 'img/water-can.jpg');
-var wineglass = new PictureObject ('wine-glass','img/wine-glass.jpg');
+function instantiatePictureObjects(){
+  var bagObject = new PictureObject ('bagpicture', 'img/bag.jpg');
+  var bananaObject = new PictureObject ('bananapicture', 'img/banana.jpg');
+  var bathroomObject = new PictureObject ('bathroom','img/bathroom.jpg');
+  var bootsObject = new PictureObject ('boots','img/boots.jpg');
+  var breakfastObject = new PictureObject ('breakfast', 'img/breakfast.jpg');
+  var bubblegumObject = new PictureObject ('bubblegum', 'img/bubblegum.jpg');
+  var chairObject = new PictureObject ('chair', 'img/chair.jpg');
+  var cthulhuObject = new PictureObject ('cthulhu', 'img/cthulhu.jpg');
+  var dogduck = new PictureObject ('dog-duck', 'img/dog-duck.jpg');
+  var dragon = new PictureObject ('dragon', 'img/dragon.jpg');
+  var pen = new PictureObject ('pen','img/pen.jpg');
+  var petsweep = new PictureObject ('pet-sweep', 'img/pet-sweep.jpg');
+  var scissors = new PictureObject ('scissors', 'img/scissors.jpg');
+  var shark = new PictureObject ('shark', 'img/shark.jpg');
+  var sweep = new PictureObject ('sweep', 'img/sweep.png');
+  var tauntuan = new PictureObject ('tauntaun', 'img/tauntaun.jpg');
+  var unicorn = new PictureObject ('unicorn', 'img/unicorn.jpg');
+  var usb = new PictureObject ('usb', 'img/usb.jpg');
+  var watercan = new PictureObject ('water-can', 'img/water-can.jpg');
+  var wineglass = new PictureObject ('wine-glass','img/wine-glass.jpg');
+}
 
+instantiatePictureObjects();
 
 
 //create index with randomized numbers
@@ -99,6 +102,8 @@ function pictureVotes(src){
       totalVotes += 1;
     }
   }
+  var stringPictureObjects = JSON.stringify(pictureObjectsArray);
+  localStorage.setItem('pictures', stringPictureObjects);
 }
 
 
@@ -184,7 +189,23 @@ var resultsClick = document.getElementById('button');
 resultsClick.addEventListener('click', tracker.makeChart);
 
 
+
 //Local Storage Section
+
+(function getLocalStorage(){
+ if (localStorage.pictures){
+   var stringPictureObjects = localStorage.getItem('pictures');
+   var pictures = JSON.parse(stringPictureObjects);
+   console.log(avocados);
+
+   for (var pics of pictures) {
+     console.log(pics);
+     var newPicture = new PictureObject (pics.name, pics.filePath, pics.timesDisplayed, pics.votes);
+   }
+ } else {
+   instantiatePictureObjects();
+ }
+})()
 
 //1. Check to see if there is already something in local storage
 //use localstorage.getItem(object);
